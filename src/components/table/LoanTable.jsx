@@ -5,7 +5,7 @@ import { useContext, useState } from "react";
 import Pagination from "../pagination/Pagination";
 import { ModalsContext } from "../../contexts/ModalContext";
 
-const LoanTable = ({ data, loading }) => {
+const LoanTable = ({ data, loading,error }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(5);
 
@@ -104,7 +104,7 @@ const LoanTable = ({ data, loading }) => {
           <div className="flex  justify-center  w-full pt-5">
             <svg
               aria-hidden="true"
-              className="w-10 h-10   text-gray-200 animate-spin  fill-blueMain"
+              className="w-10 h-10   text-gray-200 animate-spin  fill-blue-800"
               viewBox="0 0 100 101"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -120,6 +120,9 @@ const LoanTable = ({ data, loading }) => {
             </svg>
           </div>
         )}
+        {error && <div className="flex  justify-center items-center  w-full mt-5 p-2 bg-red-200">
+          <h1 className="text-xl text-red-600 font-semibold">{error}</h1>
+          </div>}
         <Pagination
           itemsPerPage={productsPerPage}
           total={data?.length}

@@ -6,6 +6,7 @@ import { useState } from 'react';
 const useLoanFetcher = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error,setError]=useState()
   const baseUrl = "https://okigwecreations.online/api/"
 
   const formdata = new FormData()
@@ -25,14 +26,15 @@ const useLoanFetcher = () => {
       setData(responseData);
       setLoading(false);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error('Error fetching data', error);
+      setError('Error fetching data:')
       setLoading(false);
     }
   };
 
   
 
-  return { data, loading,fetchLoans };
+  return { data, loading,fetchLoans,error };
 };
 
 export default useLoanFetcher;

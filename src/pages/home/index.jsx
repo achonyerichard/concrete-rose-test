@@ -8,7 +8,7 @@ import { ModalsContext } from "../../contexts/ModalContext";
 import ViewLoan from "../../components/modals/ViewLoan";
 
 const Home = () => {
-    const { data, loading,fetchLoans } = useLoanFetcher();
+    const { data, loading,fetchLoans,error } = useLoanFetcher();
     const {loanId}= useContext(ModalsContext)
     console.log(loanId);
     useEffect(() => {
@@ -23,7 +23,7 @@ const Home = () => {
         
         <h1 className="text-blue-500 text-xl md:text-4xl font-semibold pb-5">Apply Loan</h1>
         <ApplyLoan/>
-        <LoanTable data={data} loading={loading}/>
+        <LoanTable data={data} loading={loading} error={error}/>
       </div>
       <ViewLoan data={data}/>
       </Layout>
